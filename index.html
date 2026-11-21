@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex & Sophia | Our Forever</title>
+<meta name="description" content="A beautiful anniversary experience celebrating Alex and Sophia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#d8b779;
+  --gold-light:#f4dfae;
+  --bg:#090909;
+  --panel:#141310;
+  --muted:#aaa39a;
+  --white:#f8f4ec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+button{font:inherit}
+a{color:inherit;text-decoration:none}
+#loader{
+  position:fixed;inset:0;z-index:1000;
+  background:#090909;display:grid;place-items:center;
+  transition:opacity 1s,visibility 1s;
+}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-content{text-align:center}
+.loader-star{font-size:35px;color:var(--gold);animation:pulse 1.5s infinite}
+.loader-content p{letter-spacing:5px;font-size:10px;color:var(--gold);margin-top:15px}
+@keyframes pulse{50%{transform:scale(1.3);opacity:.5}}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.particle{
+  position:absolute;bottom:-15px;width:3px;height:3px;
+  border-radius:50%;background:var(--gold);
+  opacity:.5;animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  to{transform:translateY(-110vh) translateX(40px);opacity:0}
+}
+nav{
+  position:absolute;top:0;left:0;width:100%;z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:27px 7%;
+}
+.logo{font-family:'Cormorant Garamond',serif;letter-spacing:3px;color:var(--gold);font-size:18px}
+.nav-links{display:flex;gap:27px;font-size:11px;color:#d0c8bd;letter-spacing:1px}
+.nav-links a:hover{color:var(--gold)}
+.music-btn{
+  border:1px solid #716044;background:transparent;color:var(--gold);
+  padding:10px 14px;border-radius:30px;cursor:pointer;font-size:11px;
+}
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;padding:120px 20px 90px;
+  background:
+  linear-gradient(180deg,rgba(0,0,0,.38),#090909 100%),
+  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85') center/cover;
+}
+.hero-content{position:relative;z-index:2;max-width:850px}
+.eyebrow{
+  color:var(--gold);font-size:10px;letter-spacing:5px;
+  text-transform:uppercase;margin-bottom:25px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(65px,12vw,125px);font-weight:400;
+  line-height:.9;letter-spacing:-3px;
+}
+.hero h1 span{color:var(--gold);font-style:italic}
+.hero-sub{color:#d0c8bd;font-size:14px;letter-spacing:2px;margin:30px 0 38px}
+.primary-btn{
+  border:1px solid var(--gold);background:var(--gold);color:#17120a;
+  padding:15px 29px;border-radius:2px;cursor:pointer;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  transition:.3s;
+}
+.primary-btn:hover{background:transparent;color:var(--gold);transform:translateY(-3px)}
+.scroll-note{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-size:9px;letter-spacing:3px;color:#aaa;
+}
+section{padding:105px 8%;position:relative;z-index:2}
+.section-heading{text-align:center;margin-bottom:55px}
+.section-heading small{color:var(--gold);letter-spacing:4px;font-size:10px}
+.section-heading h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,7vw,68px);font-weight:400;margin-top:13px;
+}
+.section-heading p{color:var(--muted);font-size:13px;margin-top:13px}
+.intro{background:var(--bg);text-align:center}
+.intro-quote{
+  max-width:760px;margin:auto;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(25px,4vw,39px);
+  line-height:1.55;color:#e8dfd1;
+}
+.intro-quote span{color:var(--gold);font-style:italic}
+.counter-section{
+  background:linear-gradient(120deg,#17140e,#0b0b0b);
+  border-top:1px solid #302719;border-bottom:1px solid #302719;
+}
+.counter-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;max-width:850px;margin:auto;text-align:center;
+}
+.counter-item{padding:25px 10px;border-right:1px solid #403522}
+.counter-item:last-child{border:0}
+.counter-item strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:clamp(35px,6vw,62px);font-weight:500;color:var(--gold);
+}
+.counter-item span{font-size:9px;letter-spacing:3px;color:#aaa;text-transform:uppercase}
+.timeline{max-width:850px;margin:auto;position:relative}
+.timeline:before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;
+  width:1px;background:linear-gradient(transparent,var(--gold),transparent);
+}
+.timeline-item{width:50%;padding:20px 45px;position:relative}
+.timeline-item:nth-child(even){margin-left:50%}
+.timeline-item:before{
+  content:'✦';position:absolute;right:-8px;top:30px;color:var(--gold);
+  background:var(--bg);font-size:16px;
+}
+.timeline-item:nth-child(even):before{left:-8px;right:auto}
+.timeline-card{
+  background:var(--panel);border:1px solid #332b20;
+  padding:27px;border-radius:3px;transition:.3s;
+}
+.timeline-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+.timeline-card small{color:var(--gold);letter-spacing:2px;font-size:9px}
+.timeline-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:29px;
+  font-weight:500;margin:10px 0;
+}
+.timeline-card p{font-size:12px;color:var(--muted);line-height:1.8}
+.gallery{background:#100f0c}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  max-width:1100px;margin:auto;
+}
+.gallery-card{height:350px;overflow:hidden;position:relative;cursor:pointer;background:#211d16}
+.gallery-card img{
+  width:100%;height:100%;object-fit:cover;filter:brightness(.78);
+  transition:transform .7s,filter .7s;
+}
+.gallery-card:hover img{transform:scale(1.09);filter:brightness(1)}
+.gallery-card span{
+  position:absolute;bottom:20px;left:20px;
+  font-family:'Cormorant Garamond',serif;font-size:24px;
+  text-shadow:0 2px 10px #000;
+}
+.letter-section{text-align:center}
+.envelope{
+  max-width:580px;margin:auto;padding:50px 35px;
+  border:1px solid #675536;background:linear-gradient(145deg,#1b1811,#100f0c);
+  position:relative;
+}
+.envelope:before{
+  content:'✦';font-size:25px;color:var(--gold);display:block;margin-bottom:20px;
+}
+.envelope h3{font-family:'Cormorant Garamond',serif;font-size:37px;font-weight:400}
+.envelope p{color:var(--muted);font-size:13px;line-height:1.9;margin:20px 0}
+#letterText{display:none;text-align:left;color:#e8dfd1;line-height:2;font-size:14px}
+#letterText.show{display:block;animation:reveal 1s}
+@keyframes reveal{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.surprise{
+  background:radial-gradient(ellipse at center,#282013,#090909 70%);
+  text-align:center;overflow:hidden;
+}
+.surprise h2{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(48px,9vw,90px);
+  font-weight:400;margin:20px 0;color:var(--gold-light);
+}
+#celebration{font-size:45px;min-height:70px;margin:20px}
+footer{
+  padding:45px 20px;text-align:center;background:#070707;
+  border-top:1px solid #302719;color:#777;font-size:10px;letter-spacing:2px;
+}
+footer strong{color:var(--gold);font-weight:500}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.lightbox{
+  position:fixed;inset:0;background:#000e;z-index:100;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90%;max-height:85vh;object-fit:contain}
+.lightbox button{
+  position:absolute;top:25px;right:30px;background:none;border:0;
+  color:white;font-size:35px;cursor:pointer;
+}
+@media(max-width:700px){
+  nav{padding:20px 5%}
+  .nav-links{display:none}
+  section{padding:80px 6%}
+  .counter-grid{grid-template-columns:repeat(2,1fr)}
+  .counter-item:nth-child(2){border:0}
+  .timeline:before{left:10px}
+  .timeline-item,.timeline-item:nth-child(even){
+    width:100%;margin-left:0;padding:15px 0 15px 35px;
+  }
+  .timeline-item:before,.timeline-item:nth-child(even):before{left:2px;right:auto}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:9px}
+  .gallery-card{height:230px}
+  .gallery-card span{font-size:19px;left:12px;bottom:12px}
+  .hero h1{letter-spacing:-1px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-star">✦</div>
+    <p>A STORY OF FOREVER</p>
+  </div>
+</div>
+
+<div id="particles"></div>
+
+<nav>
+  <div class="logo">A & S</div>
+  <div class="nav-links">
+    <a href="#story">OUR STORY</a>
+    <a href="#memories">MEMORIES</a>
+    <a href="#letter">A LETTER</a>
+  </div>
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">♫ MUSIC: OFF</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">A celebration of love & togetherness</div>
+    <h1>Alex <span>&</span><br>Sophia</h1>
+    <p class="hero-sub">ONE LOVE. A THOUSAND MEMORIES. FOREVER.</p>
+    <button class="primary-btn" onclick="document.querySelector('#story').scrollIntoView({behavior:'smooth'})">
+      Discover Our Story ↓
+    </button>
+  </div>
+  <div class="scroll-note">SCROLL TO EXPLORE</div>
+</header>
+
+<section class="intro reveal">
+  <div class="section-heading">
+    <small>THE BEAUTY OF US</small>
+    <h2>Some stories are timeless.</h2>
+  </div>
+  <p class="intro-quote">
+    "In a world full of moments, the most beautiful ones are the moments we get to share.
+    Every chapter, every laugh, every little memory — <span>all part of our forever.</span>"
+  </p>
+</section>
+
+<section class="counter-section reveal">
+  <div class="section-heading">
+    <small>EVERY SECOND COUNTS</small>
+    <h2>Our time together</h2>
+    <p>A little reminder of a beautiful journey.</p>
+  </div>
+  <div class="counter-grid">
+    <div class="counter-item"><strong id="years">00</strong><span>Years</span></div>
+    <div class="counter-item"><strong id="days">00</strong><span>Days</span></div>
+    <div class="counter-item"><strong id="hours">00</strong><span>Hours</span></div>
+    <div class="counter-item"><strong id="minutes">00</strong><span>Minutes</span></div>
+  </div>
+</section>
+
+<section id="story" class="reveal">
+  <div class="section-heading">
+    <small>CHAPTERS OF US</small>
+    <h2>Our little journey</h2>
+    <p>Every great story has moments worth remembering.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <small>CHAPTER 01 · THE BEGINNING</small>
+        <h3>The First Hello</h3>
+        <p>Somehow, an ordinary day became the beginning of something extraordinary. A simple hello turned into a beautiful story.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <small>CHAPTER 02 · THE SPARK</small>
+        <h3>Little Moments</h3>
+        <p>Long conversations, silly jokes and moments that made time fly. The smallest things became the biggest memories.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <small>CHAPTER 03 · THE JOURNEY</small>
+        <h3>Growing Together</h3>
+        <p>Learning, laughing and making new memories. Every experience added another beautiful page to our story.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <small>CHAPTER 04 · FOREVER</small>
+        <h3>Still Choosing Us</h3>
+        <p>And here we are, celebrating another chapter — with countless memories behind us and endless possibilities ahead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="memories" class="gallery reveal">
+  <div class="section-heading">
+    <small>FROZEN IN TIME</small>
+    <h2>Beautiful memories</h2>
+    <p>Little glimpses of a story worth celebrating.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85" alt="Wedding celebration">
+      <span>The beginning</span>
+    </div>
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=85" alt="A beautiful moment">
+      <span>Little joys</span>
+    </div>
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=85" alt="Special day">
+      <span>Special days</span>
+    </div>
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=800&q=85" alt="Celebration">
+      <span>Our celebrations</span>
+    </div>
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=800&q=85" alt="Happy memories">
+      <span>Happy memories</span>
+    </div>
+    <div class="gallery-card" onclick="openImage(this)">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=85" alt="A special celebration">
+      <span>Forever moments</span>
+    </div>
+  </div>
+</section>
+
+<section id="letter" class="letter-section reveal">
+  <div class="section-heading">
+    <small>WORDS FROM THE HEART</small>
+    <h2>A little something for you</h2>
+  </div>
+  <div class="envelope">
+    <h3>To My Favourite Person</h3>
+    <p>Some feelings deserve more than a simple message. There's a little letter waiting for you.</p>
+    <button class="primary-btn" onclick="revealLetter()">OPEN YOUR LETTER ✦</button>
+    <div id="letterText">
+      <p style="margin-top:30px">My dearest Sophia,</p>
+      <p>Happy Anniversary! If I could relive a thousand moments, I would still choose every single one that brought us here.</p>
+      <p>Thank you for the laughter, the little adventures, the kindness and all the memories that make life brighter.</p>
+      <p>May the chapters ahead be filled with even more happiness, discoveries and beautiful moments.</p>
+      <p>Here's to our story — and all the pages yet to be written.</p>
+      <p style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:24px">With all my love, Alex ✦</p>
+    </div>
+  </div>
+</section>
+
+<section class="surprise reveal">
+  <div class="eyebrow">AND ONE LAST THING...</div>
+  <h2>Here's to forever.</h2>
+  <p style="color:var(--muted);font-size:13px;line-height:2;max-width:500px;margin:auto">
+    The best stories don't have an ending. They simply keep becoming more beautiful.
+  </p>
+  <div id="celebration">✦</div>
+  <button class="primary-btn" onclick="celebrate()">MAKE A WISH ✨</button>
+</section>
+
+<footer>
+  MADE WITH CARE & CREATIVITY BY<br><br>
+  <strong>INFINITE VISION STUDIO</strong>
+  <p style="margin-top:12px">DESIGNING YOUR VISION INTO REALITY.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeImage()">
+  <button aria-label="Close image" onclick="closeImage()">×</button>
+  <img id="lightboxImage" src="" alt="Expanded memory">
+</div>
+
+<script>
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'),1000);
+});
+
+// Floating golden particles
+const particleBox=document.getElementById('particles');
+for(let i=0;i<35;i++){
+  const p=document.createElement('span');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(8+Math.random()*13)+'s';
+  p.style.animationDelay=(-Math.random()*15)+'s';
+  p.style.opacity=(.2+Math.random()*.5);
+  particleBox.appendChild(p);
+}
+
+// Reveal sections while scrolling
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Anniversary duration demo: change this date for each customer
+const anniversaryDate=new Date('2020-11-21T00:00:00');
+function updateCounter(){
+  const now=new Date();
+  let years=now.getFullYear()-anniversaryDate.getFullYear();
+  const anniversaryThisYear=new Date(now.getFullYear(),anniversaryDate.getMonth(),anniversaryDate.getDate());
+  if(now<anniversaryThisYear)years--;
+  const lastAnniversary=new Date(anniversaryDate.getFullYear()+years,anniversaryDate.getMonth(),anniversaryDate.getDate());
+  const diff=now-lastAnniversary;
+  const days=Math.floor(diff/86400000);
+  const hours=Math.floor((diff%86400000)/3600000);
+  const minutes=Math.floor((diff%3600000)/60000);
+  document.getElementById('years').textContent=String(years).padStart(2,'0');
+  document.getElementById('days').textContent=String(days).padStart(2,'0');
+  document.getElementById('hours').textContent=String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent=String(minutes).padStart(2,'0');
+}
+updateCounter();
+setInterval(updateCounter,60000);
+
+// Letter reveal
+function revealLetter(){
+  const letter=document.getElementById('letterText');
+  letter.classList.toggle('show');
+  if(letter.classList.contains('show')){
+    letter.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+// Gallery lightbox
+function openImage(card){
+  document.getElementById('lightboxImage').src=card.querySelector('img').src;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeImage(){
+  document.getElementById('lightbox').classList.remove('show');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeImage();
+});
+
+// Celebration surprise
+function celebrate(){
+  const box=document.getElementById('celebration');
+  box.textContent='✦ ✨ 🎉 ✨ ✦';
+  box.animate([
+    {transform:'scale(.6)',opacity:0},
+    {transform:'scale(1.3)',opacity:1},
+    {transform:'scale(1)',opacity:1}
+  ],{duration:700,easing:'ease-out'});
+  for(let i=0;i<45;i++){
+    const conf=document.createElement('span');
+    conf.textContent=['✦','✨','✧','❋'][Math.floor(Math.random()*4)];
+    conf.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:${Math.random()*75}vh;color:#d8b779;font-size:${12+Math.random()*20}px;pointer-events:none;z-index:200;animation:confetti 2s ease-out forwards`;
+    document.body.appendChild(conf);
+    setTimeout(()=>conf.remove(),2100);
+  }
+}
+
+// Optional music: add a properly licensed music file to the repository
+let audio=null;
+function toggleMusic(){
+  const btn=document.getElementById('musicBtn');
+  if(!audio){
+    audio=new Audio('music.mp3');
+    audio.loop=true;
+  }
+  if(audio.paused){
+    audio.play().then(()=>btn.textContent='♫ MUSIC: ON').catch(()=>{
+      btn.textContent='♫ ADD MUSIC FILE';
+      alert('Add a licensed music file named music.mp3 to your repository first.');
+    });
+  }else{
+    audio.pause();
+    btn.textContent='♫ MUSIC: OFF';
+  }
+}
+</script>
+
+<style>
+@keyframes confetti{
+  0%{transform:translateY(0) rotate(0deg);opacity:1}
+  100%{transform:translateY(150px) rotate(300deg);opacity:0}
+}
+</style>
+</body>
+        </html>
+        
